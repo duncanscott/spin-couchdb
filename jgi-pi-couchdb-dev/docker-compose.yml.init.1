@@ -17,7 +17,8 @@ services:
         stdin_open: true
         tty: true
         volumes:
-         - kv.jgi-pi-couchdb-dev:/opt/couchdb
+          - kv.jgi-pi-couchdb-dev:/opt/couchdb/data
+          - kv.jgi-pi-couchdb-dev:/opt/couchdb/etc
 volumes:
     kv.jgi-pi-couchdb-dev:
         driver: rancher-nfs
