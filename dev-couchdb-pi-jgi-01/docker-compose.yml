@@ -3,7 +3,6 @@ version: '2'
 services:
     kv:
         image: couchdb:2.2.0
-        restart: always
         cap_drop:
             - ALL
         cap_add:
@@ -15,7 +14,7 @@ services:
         ports:
           - 50003:5984
         volumes:
-         - kv.dev-couchdb-pi-jgi-01:/opt
+         - kv.dev-couchdb-pi-jgi-01:/opt/couchdb/data
 volumes:
     kv.dev-couchdb-pi-jgi-01:
         driver: rancher-nfs
