@@ -14,9 +14,9 @@ services:
             - SETUID
         ports:
           - 50003:5984
-        volumes:
-          - kv.jgi-pi-couchdb-dev:/opt/couchdb
-volumes:
-    kv.jgi-pi-couchdb-dev:
-        driver: rancher-nfs
-        external: true
+#        volumes:
+#          - kv.jgi-pi-couchdb-dev:/opt/couchdb
+#volumes:
+#    kv.jgi-pi-couchdb-dev:
+#        driver: rancher-nfs
+#        external: true
