@@ -13,9 +13,4 @@ services:
          - SETUID
         stdin_open: true
         tty: true
-        volumes:
-          - kv.jgi-pi-couchdb-dev:/opt/couchdb
-volumes:
-    kv.jgi-pi-couchdb-dev:
-        driver: rancher-nfs
-        external: true
+
