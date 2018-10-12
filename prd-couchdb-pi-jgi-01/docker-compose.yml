@@ -13,11 +13,11 @@ services:
             - SETGID
             - SETUID
         ports:
-          - 50001:5984
+          - 50003:5984
         volumes:
-          - kv.jgi-pi-couchdb-prd:/opt/couchdb/data
-          - kv.jgi-pi-couchdb-prd:/opt/couchdb/etc/local.d
+         - kv.prd-couchdb-pi-jgi-01:/opt/couchdb/data
+         - kv.prd-couchdb-pi-jgi-01:/opt/couchdb/etc/local.d
 volumes:
-    kv.jgi-pi-couchdb-prd:
+    kv.prd-couchdb-pi-jgi-01:
         driver: rancher-nfs
         external: true
