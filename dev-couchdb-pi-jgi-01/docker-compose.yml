@@ -15,9 +15,8 @@ services:
         ports:
           - 50003:5984
         volumes:
-          - kv.jgi-pi-couchdb-dev:/opt/couchdb/data
-          - kv.jgi-pi-couchdb-dev:/opt/couchdb/etc
+         - kv.dev-couchdb-pi-jgi-01:/opt
 volumes:
-    kv.jgi-pi-couchdb-dev:
+    kv.dev-couchdb-pi-jgi-01:
         driver: rancher-nfs
         external: true
