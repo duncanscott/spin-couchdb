@@ -1,0 +1,24 @@
+# Use this docker compose to set up /var/jenkins_home.
+# You can then exec -it /bin/bash into the container and executre chmod 777 /var/jenkins_home.
+# This is necessary because the application will run as you, not as root.
+version: '2'
+
+services:
+    kv: #camunda is not an allowed service name. Allowed service names are: api,db,kv,lb,web,app
+        image: debian:stretch
+        cap_drop:
+         - ALL
+        cap_add:
+         - CHOWN
+         - DAC_OVERRIDE
+         - FOWNER
+         - SETGID
+         - SETUID
+        stdin_open: true
+        tty: true
+#        volumes:
+#         - kv.jgi-pi-couchdb-dev:/opt/couchdb
+#volumes:
+#    kv.jgi-pi-couchdb-dev:
+#        driver: rancher-nfs
+#        external: true
