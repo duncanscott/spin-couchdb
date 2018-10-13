@@ -13,7 +13,7 @@ services:
             - SETGID
             - SETUID
         ports:
-          - 50003:5984
+          - 5984:5984
         volumes:
          - kv.int-couchdb-pi-jgi-01:/opt/couchdb/data
          - kv.int-couchdb-pi-jgi-01:/opt/couchdb/etc/local.d
