@@ -16,7 +16,6 @@ services:
           - 50003:5984
         volumes:
          - kv.dev-couchdb-pi-jgi-01:/opt/couchdb/data
-         - kv.dev-couchdb-pi-jgi-01:/opt/couchdb/etc
          - kv.dev-couchdb-pi-jgi-01:/opt/couchdb/etc/local.d
 volumes:
     kv.dev-couchdb-pi-jgi-01:
