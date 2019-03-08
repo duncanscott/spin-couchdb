@@ -19,6 +19,12 @@ services:
          - kv.dev-couchdb-pi-jgi-02.local:/opt/couchdb/etc/local.d
          - kv.dev-couchdb-pi-jgi-02.log:/opt/couchdb/var/log
 volumes:
-    kv.dev-couchdb-pi-jgi-02:
+    kv.dev-couchdb-pi-jgi-02.data:
+        driver: rancher-nfs
+        external: true
+    kv.dev-couchdb-pi-jgi-02.local:
+        driver: rancher-nfs
+        external: true
+    kv.dev-couchdb-pi-jgi-02.log:
         driver: rancher-nfs
         external: true
