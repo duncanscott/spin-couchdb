@@ -15,8 +15,9 @@ services:
         ports:
           - 5984:5984
         volumes:
-         - kv.dev-couchdb-pi-jgi-02:/opt/couchdb/data
-         - kv.dev-couchdb-pi-jgi-02:/opt/couchdb/etc/local.d
+         - kv.dev-couchdb-pi-jgi-02.data:/opt/couchdb/data
+         - kv.dev-couchdb-pi-jgi-02.local:/opt/couchdb/etc/local.d
+         - kv.dev-couchdb-pi-jgi-02.log:/opt/couchdb/var/log
 volumes:
     kv.dev-couchdb-pi-jgi-02:
         driver: rancher-nfs
