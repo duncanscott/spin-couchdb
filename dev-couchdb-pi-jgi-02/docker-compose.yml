@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+    kv:
+        image: couchdb:2.2.0
+        restart: always
+        cap_drop:
+            - ALL
+        cap_add:
+            - CHOWN
+            - DAC_OVERRIDE
+            - FOWNER
+            - SETGID
+            - SETUID
+        ports:
+          - 5984:5984
+        volumes:
+         - kv.dev-couchdb-pi-jgi-02:/opt/couchdb/data
+         - kv.dev-couchdb-pi-jgi-02:/opt/couchdb/etc/local.d
+volumes:
+    kv.dev-couchdb-pi-jgi-02:
+        driver: rancher-nfs
+        external: true

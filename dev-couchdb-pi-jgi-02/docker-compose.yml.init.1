@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+    kv: # allowed service names are: api,db,kv,lb,web,app
+        image: debian:stretch
+        cap_drop:
+         - ALL
+        cap_add:
+         - CHOWN
+         - DAC_OVERRIDE
+         - FOWNER
+         - SETGID
+         - SETUID
+        stdin_open: true
+        tty: true
+        volumes:
+         - kv.dev-couchdb-pi-jgi-02:/opt
+volumes:
+    kv.dev-couchdb-pi-jgi-02:
+        driver: rancher-nfs
+        external: true
