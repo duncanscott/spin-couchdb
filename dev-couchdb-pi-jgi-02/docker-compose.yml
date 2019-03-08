@@ -2,7 +2,7 @@ version: '2'
 
 services:
     kv:
-        image: couchdb:2.2.0
+        image: couchdb:2.3.0
         restart: always
         cap_drop:
             - ALL
