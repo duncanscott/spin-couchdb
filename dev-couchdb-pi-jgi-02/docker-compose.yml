@@ -19,7 +19,7 @@ services:
       - kv.dev-couchdb-pi-jgi-02.local:/opt/couchdb/etc/local.d
       - kv.dev-couchdb-pi-jgi-02.log:/opt/couchdb/var/log
   lb:
-    image: elastic/filebeat:6.6.1
+    image: registry.spin.nersc.gov/scott/filebeat:6.6.1-1
     restart: always
     cap_drop:
       - ALL
