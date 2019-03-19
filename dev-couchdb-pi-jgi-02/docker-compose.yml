@@ -30,7 +30,7 @@ services:
       - SETGID
       - SETUID
     volumes:
-      - kv.dev-couchdb-pi-jgi-02.log:/home/filebeat/logs
+      - kv.dev-couchdb-pi-jgi-02.log:/usr/share/filebeat/logs
 volumes:
   kv.dev-couchdb-pi-jgi-02.data:
     driver: rancher-nfs
