@@ -1,0 +1,14 @@
+###################### Filebeat Configuration Example #########################
+
+# For more available modules and options, please see the filebeat.reference.yml sample
+# configuration file.
+
+#=========================== Filebeat inputs =============================
+filebeat.prospectors:
+  - type: log
+    paths:
+      - /home/filebeat/logs/*.log
+    fields:
+      type: syslog
+output.logstash:
+  hosts: ["zuul-dev.jgi.doe.gov:5044"]
