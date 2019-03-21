@@ -2,7 +2,7 @@ version: '2'
 
 services:
   kv:
-    image: couchdb:2.3.0
+    image: couchdb:2.3.1
     restart: always
     cap_drop:
       - ALL
@@ -16,7 +16,7 @@ services:
       - 5984:5984
     volumes:
       - kv.dev-couchdb-pi-jgi-02.data:/opt/couchdb/data
-      - kv.dev-couchdb-pi-jgi-02.local:/opt/couchdb/etc/local.d
+      - kv.dev-couchdb-pi-jgi-02.etc:/opt/couchdb/etc
       - kv.dev-couchdb-pi-jgi-02.log:/opt/couchdb/var/log
   lb:
     image: registry.spin.nersc.gov/scott/filebeat:6.6.1-2
