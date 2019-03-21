@@ -7,7 +7,7 @@
 filebeat.prospectors:
   - type: log
     paths:
-      - /home/filebeat/logs/*.log
+      - /usr/share/filebeat/logs/*.log
     fields:
       type: syslog
 output.logstash:
