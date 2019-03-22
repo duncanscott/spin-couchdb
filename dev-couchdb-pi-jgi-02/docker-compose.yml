@@ -18,8 +18,8 @@ services:
       - kv.dev-couchdb-pi-jgi-02.data:/opt/couchdb/data
       - kv.dev-couchdb-pi-jgi-02.etc:/opt/couchdb/etc
       - kv.dev-couchdb-pi-jgi-02.log:/opt/couchdb/var/log
-  lb:
-    image: registry.spin.nersc.gov/scott/filebeat:6.6.1-2
+  beat:
+    image: registry.spin.nersc.gov/scott/filebeat:6.6.2-1
     restart: always
     cap_drop:
       - ALL
@@ -31,11 +31,30 @@ services:
       - SETUID
     volumes:
       - kv.dev-couchdb-pi-jgi-02.log:/usr/share/filebeat/logs
+  rotate:
+    image: registry.spin.nersc.gov/scott/logrotate:0.2
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - DAC_OVERRIDE
+      - FOWNER
+      - SETGID
+      - SETUID
+    volumes:
+      - kv.dev-couchdb-pi-jgi-02.log:/usr/share/filebeat/logs
+    labels:
+      # prevent running stale (cached) image on restart or upgrade
+      io.rancher.container.pull_image: always
+      # run every 15 minutes
+      cron.schedule: 0,15,30,45 * * * *
+      # override default behavior to restart container after backup process completes
+      io.rancher.container.start_once: 'true'
 volumes:
   kv.dev-couchdb-pi-jgi-02.data:
     driver: rancher-nfs
     external: true
-  kv.dev-couchdb-pi-jgi-02.local:
+  kv.dev-couchdb-pi-jgi-02.etc:
     driver: rancher-nfs
     external: true
   kv.dev-couchdb-pi-jgi-02.log:
