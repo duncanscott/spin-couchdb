@@ -19,7 +19,7 @@ services:
       - kv.dev-couchdb-pi-jgi-02.etc:/opt/couchdb/etc
       - kv.dev-couchdb-pi-jgi-02.log:/opt/couchdb/var/log
   beat:
-    image: registry.spin.nersc.gov/scott/filebeat:6.6.2-1
+    image: registry.spin.nersc.gov/scott/filebeat:6.6.2-0.5
     restart: always
     cap_drop:
       - ALL
@@ -30,9 +30,10 @@ services:
       - SETGID
       - SETUID
     volumes:
-      - kv.dev-couchdb-pi-jgi-02.log:/usr/share/filebeat/logs
+      - beat.dev-couchdb-pi-jgi-02.conf:/usr/share/filebeat
+      - kv.dev-couchdb-pi-jgi-02.log:/var/log/filebeat/logs
   rotate:
-    image: registry.spin.nersc.gov/scott/logrotate:0.2
+    image: registry.spin.nersc.gov/scott/logrotate:0.5
     cap_drop:
       - ALL
     cap_add:
@@ -42,7 +43,8 @@ services:
       - SETGID
       - SETUID
     volumes:
-      - kv.dev-couchdb-pi-jgi-02.log:/usr/share/filebeat/logs
+      - rotate.dev-couchdb-pi-jgi-02.conf:/usr/share/logrotate
+      - kv.dev-couchdb-pi-jgi-02.log:/var/log/filebeat/logs
     labels:
       # prevent running stale (cached) image on restart or upgrade
       io.rancher.container.pull_image: always

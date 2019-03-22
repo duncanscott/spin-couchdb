@@ -7,8 +7,8 @@
 filebeat.prospectors:
   - type: log
     paths:
-      - /usr/share/filebeat/logs/*.log
+      - /var/log/filebeat/logs/*.log
     fields:
       type: syslog
 output.logstash:
-  hosts: ["zuul-dev.jgi.doe.gov:5044"]
+  hosts: ["${LOGSTASH_HOST}:${LOGSTASH_PORT}"]
