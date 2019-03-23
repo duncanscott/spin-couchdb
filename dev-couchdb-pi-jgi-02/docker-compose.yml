@@ -18,7 +18,7 @@ services:
       - kv.dev-couchdb-pi-jgi-02.data:/opt/couchdb/data
       - kv.dev-couchdb-pi-jgi-02.etc:/opt/couchdb/etc
       - kv.dev-couchdb-pi-jgi-02.log:/opt/couchdb/var/log
-  beat:
+  lb:
     image: registry.spin.nersc.gov/scott/filebeat:6.6.2-0.5
     environment:
       - LOGSTASH_HOST=zuul-dev.jgi.doe.gov
@@ -33,9 +33,9 @@ services:
       - SETGID
       - SETUID
     volumes:
-      - beat.dev-couchdb-pi-jgi-02.conf:/usr/share/filebeat
+      - lb.dev-couchdb-pi-jgi-02.conf:/usr/share/filebeat
       - kv.dev-couchdb-pi-jgi-02.log:/var/log/filebeat/logs
-  rotate:
+  api:
     image: registry.spin.nersc.gov/scott/logrotate:0.5
     cap_drop:
       - ALL
@@ -46,7 +46,7 @@ services:
       - SETGID
       - SETUID
     volumes:
-      - rotate.dev-couchdb-pi-jgi-02.conf:/usr/share/logrotate
+      - api.dev-couchdb-pi-jgi-02.conf:/usr/share/logrotate
       - kv.dev-couchdb-pi-jgi-02.log:/var/log/filebeat/logs
     labels:
       # prevent running stale (cached) image on restart or upgrade
@@ -65,9 +65,9 @@ volumes:
   kv.dev-couchdb-pi-jgi-02.log:
     driver: rancher-nfs
     external: true
-  beat.dev-couchdb-pi-jgi-02.conf:
+  lb.dev-couchdb-pi-jgi-02.conf:
     driver: rancher-nfs
     external: true
-  rotate.dev-couchdb-pi-jgi-02.conf:
+  api.dev-couchdb-pi-jgi-02.conf:
       driver: rancher-nfs
       external: true
