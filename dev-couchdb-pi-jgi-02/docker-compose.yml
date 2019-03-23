@@ -19,7 +19,7 @@ services:
       - kv.dev-couchdb-pi-jgi-02.local:/opt/couchdb/etc/local.d
       - kv.dev-couchdb-pi-jgi-02.log:/opt/couchdb/var/log
   lb:
-    image: registry.spin.nersc.gov/scott/filebeat:6.6.2-0.7
+    image: registry.spin.nersc.gov/scott/filebeat:6.6.2-0.8
     environment:
       - LOGSTASH_HOST=zuul-dev.jgi.doe.gov
       - LOGSTASH_PORT=5044
@@ -35,7 +35,7 @@ services:
     volumes:
       - kv.dev-couchdb-pi-jgi-02.log:/var/log/filebeat/logs
   api:
-    image: registry.spin.nersc.gov/scott/logrotate:0.6
+    image: registry.spin.nersc.gov/scott/logrotate:0.8
     cap_drop:
       - ALL
     cap_add:
@@ -46,12 +46,13 @@ services:
       - SETUID
     volumes:
       - api.dev-couchdb-pi-jgi-02.conf:/usr/share/logrotate
-      - kv.dev-couchdb-pi-jgi-02.log:/var/log/filebeat/logs
+      - kv.dev-couchdb-pi-jgi-02.log:/var/log/filebeat/new
+      - api.dev-couchdb-pi-jgi-02.old:/var/log/filebeat/old
     labels:
       # prevent running stale (cached) image on restart or upgrade
       io.rancher.container.pull_image: always
-      # run every hour
-      cron.schedule: 0 * * * *
+      # run every minute (for testing)
+      cron.schedule: 0 * * * * *
       # override default behavior to restart container after backup process completes
       io.rancher.container.start_once: 'true'
 volumes:
@@ -70,3 +71,6 @@ volumes:
   api.dev-couchdb-pi-jgi-02.conf:
       driver: rancher-nfs
       external: true
+  api.dev-couchdb-pi-jgi-02.old:
+    driver: rancher-nfs
+    external: true
