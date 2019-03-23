@@ -65,3 +65,9 @@ volumes:
   kv.dev-couchdb-pi-jgi-02.log:
     driver: rancher-nfs
     external: true
+  beat.dev-couchdb-pi-jgi-02.conf:
+    driver: rancher-nfs
+    external: true
+  rotate.dev-couchdb-pi-jgi-02.conf:
+      driver: rancher-nfs
+      external: true
