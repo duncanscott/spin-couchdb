@@ -35,7 +35,7 @@ services:
     volumes:
       - kv.dev-couchdb-pi-jgi-02.log:/var/log/filebeat/logs
   api:
-    image: registry.spin.nersc.gov/scott/logrotate:0.8
+    image: registry.spin.nersc.gov/scott/logrotate:0.9
     cap_drop:
       - ALL
     cap_add:

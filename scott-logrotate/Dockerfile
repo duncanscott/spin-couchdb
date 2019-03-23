@@ -1,6 +1,6 @@
 FROM gliderlabs/alpine:3.8
 RUN mkdir -p /usr/share/logrotate/
-ADD logrotate.conf /usr/share/logrotate/logotate.conf
+COPY logrotate.conf /usr/share/logrotate/logrotate.conf
 RUN apk --update add logrotate && \
   mkdir -p /var/log/filebeat/new && \
   mkdir -p /var/log/filebeat/old && \
