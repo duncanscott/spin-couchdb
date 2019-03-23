@@ -35,7 +35,7 @@ services:
     volumes:
       - kv.dev-couchdb-pi-jgi-02.log:/var/log/filebeat/logs
   api:
-    image: registry.spin.nersc.gov/scott/logrotate:0.9
+    image: registry.spin.nersc.gov/scott/logrotate:0.10
     cap_drop:
       - ALL
     cap_add:
@@ -48,13 +48,6 @@ services:
       - api.dev-couchdb-pi-jgi-02.conf:/usr/share/logrotate
       - kv.dev-couchdb-pi-jgi-02.log:/var/log/filebeat/new
       - api.dev-couchdb-pi-jgi-02.old:/var/log/filebeat/old
-    labels:
-      # prevent running stale (cached) image on restart or upgrade
-      io.rancher.container.pull_image: always
-      # run every minute (for testing)
-      cron.schedule: 0 * * * * *
-      # override default behavior to restart container after backup process completes
-      io.rancher.container.start_once: 'true'
 volumes:
   kv.dev-couchdb-pi-jgi-02.data:
     driver: rancher-nfs
