@@ -3,7 +3,7 @@ COPY filebeat.yml /usr/share/filebeat/filebeat.yml
 COPY logrotate.conf /usr/share/filebeat/logrotate.conf
 COPY rotate.sh /usr/share/filebeat/rotate.sh
 USER root
-RUN yum install logrotate && \
+RUN yum install -y logrotate && \
   chown root:filebeat /usr/share/filebeat/filebeat.yml && \
   chown root:filebeat /usr/share/filebeat/logrotate.conf && \
   chown root:filebeat /usr/share/filebeat/rotate.sh && \
@@ -12,6 +12,6 @@ RUN yum install logrotate && \
   chmod -R 777 /var/log/filebeat && \
   chmod 666 /usr/share/filebeat/filebeat.yml && \
   chmod 666 /usr/share/filebeat/logrotate.conf && \
-  chmod 777 /usr/share/filebeat/rotate.sh && \
+  chmod 777 /usr/share/filebeat/rotate.sh
 RUN nohup bash -c "/usr/share/filebeat/rotate.sh &" && sleep 4
 USER filebeat
