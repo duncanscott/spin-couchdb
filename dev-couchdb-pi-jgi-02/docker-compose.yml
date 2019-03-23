@@ -33,21 +33,8 @@ services:
       - SETGID
       - SETUID
     volumes:
-      - kv.dev-couchdb-pi-jgi-02.log:/var/log/filebeat/logs
-  api:
-    image: registry.spin.nersc.gov/scott/logrotate:0.10
-    cap_drop:
-      - ALL
-    cap_add:
-      - CHOWN
-      - DAC_OVERRIDE
-      - FOWNER
-      - SETGID
-      - SETUID
-    volumes:
-      - api.dev-couchdb-pi-jgi-02.conf:/usr/share/logrotate
       - kv.dev-couchdb-pi-jgi-02.log:/var/log/filebeat/new
-      - api.dev-couchdb-pi-jgi-02.old:/var/log/filebeat/old
+      - lb.dev-couchdb-pi-jgi-02.old:/var/log/filebeat/old
 volumes:
   kv.dev-couchdb-pi-jgi-02.data:
     driver: rancher-nfs
@@ -58,12 +45,6 @@ volumes:
   kv.dev-couchdb-pi-jgi-02.log:
     driver: rancher-nfs
     external: true
-  lb.dev-couchdb-pi-jgi-02.conf:
-    driver: rancher-nfs
-    external: true
-  api.dev-couchdb-pi-jgi-02.conf:
-      driver: rancher-nfs
-      external: true
-  api.dev-couchdb-pi-jgi-02.old:
+  lb.dev-couchdb-pi-jgi-02.old:
     driver: rancher-nfs
     external: true
