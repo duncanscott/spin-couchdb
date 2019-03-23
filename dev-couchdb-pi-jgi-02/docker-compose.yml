@@ -20,6 +20,9 @@ services:
       - kv.dev-couchdb-pi-jgi-02.log:/opt/couchdb/var/log
   beat:
     image: registry.spin.nersc.gov/scott/filebeat:6.6.2-0.5
+    environment:
+      - LOGSTASH_HOST=zuul-dev.jgi.doe.gov
+      - LOGSTASH_PORT=5044
     restart: always
     cap_drop:
       - ALL
