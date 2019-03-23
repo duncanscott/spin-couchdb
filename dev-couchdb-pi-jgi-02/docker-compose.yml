@@ -19,7 +19,7 @@ services:
       - kv.dev-couchdb-pi-jgi-02.local:/opt/couchdb/etc/local.d
       - kv.dev-couchdb-pi-jgi-02.log:/opt/couchdb/var/log
   lb:
-    image: registry.spin.nersc.gov/scott/filebeat:6.6.1-0.6
+    image: registry.spin.nersc.gov/scott/filebeat:6.6.2-0.7
     environment:
       - LOGSTASH_HOST=zuul-dev.jgi.doe.gov
       - LOGSTASH_PORT=5044
@@ -33,7 +33,6 @@ services:
       - SETGID
       - SETUID
     volumes:
-      - lb.dev-couchdb-pi-jgi-02.conf:/usr/share/filebeat
       - kv.dev-couchdb-pi-jgi-02.log:/var/log/filebeat/logs
   api:
     image: registry.spin.nersc.gov/scott/logrotate:0.6
@@ -51,8 +50,8 @@ services:
     labels:
       # prevent running stale (cached) image on restart or upgrade
       io.rancher.container.pull_image: always
-      # run every 15 minutes
-      cron.schedule: 0,1,2,3,4,5,6,15,30,45 * * * *
+      # run every hour
+      cron.schedule: 0 * * * *
       # override default behavior to restart container after backup process completes
       io.rancher.container.start_once: 'true'
 volumes:
