@@ -54,7 +54,7 @@ services:
       # run every minute (for testing)
       cron.schedule: 0 * * * * *
       # override default behavior to restart container after backup process completes
-      io.rancher.container.start_once: 'true'
+      #io.rancher.container.start_once: 'true'
 volumes:
   kv.dev-couchdb-pi-jgi-02.data:
     driver: rancher-nfs
