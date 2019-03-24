@@ -2,7 +2,7 @@ FROM gliderlabs/alpine:3.8
 #RUN mkdir -p /usr/share/logrotate/
 #COPY logrotate.conf /usr/share/logrotate/logrotate.conf
 RUN apk --update add logrotate && \
-  mkdir -p /usr/share/logrotate/
+  mkdir -p /usr/share/logrotate && \
   mkdir -p /var/log/app/new && \
   mkdir -p /var/log/app/old && \
   chmod -R 777 /var/log/app && \
