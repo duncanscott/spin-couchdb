@@ -3,5 +3,6 @@ COPY filebeat.yml /usr/share/filebeat/filebeat.yml
 USER root
 RUN chown root:filebeat /usr/share/filebeat/filebeat.yml && \
   mkdir -p /var/log/app/new && \
-  chmod -R 777 /var/log/app/new
+  mkdir -p /var/log/app/old && \
+  chmod -R 777 /var/log/app
 USER filebeat
