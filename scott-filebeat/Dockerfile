@@ -9,6 +9,6 @@ RUN chown root:filebeat /usr/share/filebeat/filebeat.yml && \
   chown root:filebeat /usr/share/logrotate  && \
   chmod 777 /usr/share/logrotate
 COPY logrotate.conf /usr/share/logrotate/logrotate.conf
-RUN chown root:filebeat /usr/share/logrotate/logrotate.conf && \
+RUN chown -R root:filebeat /usr/share/logrotate && \
   chmod 666 /usr/share/logrotate/*
 USER filebeat
