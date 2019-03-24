@@ -34,7 +34,6 @@ services:
       - SETUID
     volumes:
       - kv.dev-couchdb-pi-jgi-02.log:/var/log/filebeat/logs
-      - lb.dev-couchdb-pi-jgi-02.yml: /usr/share/filebeat/filebeat.yml
   api:
     image: registry.spin.nersc.gov/scott/logrotate:0.12
     cap_drop:
@@ -64,9 +63,6 @@ volumes:
     driver: rancher-nfs
     external: true
   kv.dev-couchdb-pi-jgi-02.log:
-    driver: rancher-nfs
-    external: true
-  lb.dev-couchdb-pi-jgi-02.yml:
     driver: rancher-nfs
     external: true
   api.dev-couchdb-pi-jgi-02.conf:
