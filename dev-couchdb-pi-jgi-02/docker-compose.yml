@@ -35,7 +35,7 @@ services:
     volumes:
       - kv.dev-couchdb-pi-jgi-02.log:/var/log/app/new
       - lb.dev-couchdb-pi-jgi-02.old:/var/log/app/old
-      - lb.dev-couchdb-pi-jgi-02.rotate:/usr/share/logrotate
+      - lb.dev-couchdb-pi-jgi-02.rot:/usr/share/logrotate
   api:
     image: registry.spin.nersc.gov/scott/logrotate:0.13
     cap_drop:
@@ -49,7 +49,7 @@ services:
     volumes:
       - kv.dev-couchdb-pi-jgi-02.log:/var/log/app/new
       - lb.dev-couchdb-pi-jgi-02.old:/var/log/app/old
-      - lb.dev-couchdb-pi-jgi-02.rotate:/usr/share/logrotate
+      - lb.dev-couchdb-pi-jgi-02.rot:/usr/share/logrotate
     labels:
       # prevent running stale (cached) image on restart or upgrade
       io.rancher.container.pull_image: always
@@ -70,7 +70,7 @@ volumes:
   lb.dev-couchdb-pi-jgi-02.old:
     driver: rancher-nfs
     external: true
-  lb.dev-couchdb-pi-jgi-02.rotate:
+  lb.dev-couchdb-pi-jgi-02.rot:
       driver: rancher-nfs
       external: true
 
