@@ -2,7 +2,7 @@ version: '2'
 
 services:
   kv:
-    image: registry.spin.nersc.gov/scott/couchdb:2.3.1
+    image: couchdb:2.3.1
     restart: always
     cap_drop:
       - ALL
