@@ -4,5 +4,7 @@ USER root
 RUN chown root:filebeat /usr/share/filebeat/filebeat.yml && \
   mkdir -p /var/log/app/new && \
   mkdir -p /var/log/app/old && \
-  chmod -R 777 /var/log/app
+  chmod -R 777 /var/log/app && \
+  mkdir -p /usr/share/logrotate && \
+  chmod 777 /usr/share/logrotate
 USER filebeat
