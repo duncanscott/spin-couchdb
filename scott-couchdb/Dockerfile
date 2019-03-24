@@ -1,2 +1,2 @@
-FROM couchdb:2.3.0
+FROM couchdb:2.3.1
 COPY local.ini /opt/couchdb/etc/

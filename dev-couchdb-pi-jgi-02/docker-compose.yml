@@ -2,7 +2,7 @@ version: '2'
 
 services:
   kv:
-    image: couchdb:2.3.1
+    image: registry.spin.nersc.gov/scott/couchdb:2.3.1
     restart: always
     cap_drop:
       - ALL
@@ -19,7 +19,7 @@ services:
       - kv.dev-couchdb-pi-jgi-02.local:/opt/couchdb/etc/local.d
       - kv.dev-couchdb-pi-jgi-02.log:/opt/couchdb/var/log
   lb:
-    image: registry.spin.nersc.gov/scott/filebeat:6.6.2-0.13
+    image: registry.spin.nersc.gov/scott/filebeat:6.6.2-0.15
     environment:
       - LOGSTASH_HOST=zuul-dev.jgi.doe.gov
       - LOGSTASH_PORT=5044
@@ -37,7 +37,7 @@ services:
       - lb.dev-couchdb-pi-jgi-02.old:/var/log/app/old
       - lb.dev-couchdb-pi-jgi-02.rot:/usr/share/logrotate
   api:
-    image: registry.spin.nersc.gov/scott/logrotate:0.13
+    image: registry.spin.nersc.gov/scott/logrotate:0.15
     cap_drop:
       - ALL
     cap_add:

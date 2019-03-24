@@ -7,4 +7,5 @@ RUN chown root:filebeat /usr/share/filebeat/filebeat.yml && \
   chmod -R 777 /var/log/app && \
   mkdir -p /usr/share/logrotate && \
   chmod 777 /usr/share/logrotate
+COPY logrotate.conf /usr/share/logrotate/logrotate.conf
 USER filebeat
