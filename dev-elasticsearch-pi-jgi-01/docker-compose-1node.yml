@@ -2,7 +2,7 @@ version: '2'
 
 services:
   api:
-    image: elasticsearch:6.6.2
+    image: egistry.spin.nersc.gov/scott/elasticsearch:6.6.2-0.1
     environment:
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=true
