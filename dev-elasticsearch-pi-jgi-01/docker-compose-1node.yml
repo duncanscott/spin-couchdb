@@ -20,13 +20,6 @@ services:
       memlock:
         soft: -1
         hard: -1
-    volumes:
-      - api.dev-elasticsearch-pi-jgi-01.data:/usr/share/elasticsearch/data
     ports:
       - 60092:9200
-    user: 0:0
-volumes:
-  api.dev-elasticsearch-pi-jgi-01.data:
-    driver: rancher-nfs
-    external: true
 
