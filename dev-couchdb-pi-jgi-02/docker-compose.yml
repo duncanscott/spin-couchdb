@@ -19,7 +19,7 @@ services:
       - kv.dev-couchdb-pi-jgi-02.local:/opt/couchdb/etc/local.d
       - kv.dev-couchdb-pi-jgi-02.log:/opt/couchdb/var/log
   lb:
-    image: registry.spin.nersc.gov/scott/filebeat:7.1.0-0.20
+    image: registry.spin.nersc.gov/scott/filebeat:7.1.0-0.21
     environment:
       - LOGSTASH_HOST=metrix.jgi.doe.gov
       - LOGSTASH_PORT=5044
