@@ -14,6 +14,7 @@ filebeat.inputs:
 processors:
   - add_fields:
       fields:
+        application: 'couchdb'
         environment: 'development'
         group: 'pi'
         team: 'pps'
