@@ -19,7 +19,7 @@ services:
       - kv.dev-couchdb-pi-jgi-02.local:/opt/couchdb/etc/local.d
       - kv.dev-couchdb-pi-jgi-02.log:/opt/couchdb/var/log
   lb:
-    image: registry.spin.nersc.gov/scott/filebeat:7.1.0-0.21
+    image: registry.spin.nersc.gov/scott/filebeat:7.1.1-0.22
     environment:
       - LOGSTASH_HOST=metrix.jgi.doe.gov
       - LOGSTASH_PORT=5044
@@ -33,11 +33,11 @@ services:
       - SETGID
       - SETUID
     volumes:
-      - kv.dev-couchdb-pi-jgi-02.log:/var/log/app/new
-      - lb.dev-couchdb-pi-jgi-02.old:/var/log/app/old
+      - kv.dev-couchdb-pi-jgi-02.log:/opt/couchdb/var/log
+      - lb.dev-couchdb-pi-jgi-02.old:/var/log/couchdb/old
       - lb.dev-couchdb-pi-jgi-02.rot:/usr/share/logrotate
   api:
-    image: registry.spin.nersc.gov/scott/logrotate:0.16
+    image: registry.spin.nersc.gov/scott/logrotate:0.22
     cap_drop:
       - ALL
     cap_add:
@@ -47,8 +47,8 @@ services:
       - SETGID
       - SETUID
     volumes:
-      - kv.dev-couchdb-pi-jgi-02.log:/var/log/app/new
-      - lb.dev-couchdb-pi-jgi-02.old:/var/log/app/old
+      - kv.dev-couchdb-pi-jgi-02.log:/opt/couchdb/var/log
+      - lb.dev-couchdb-pi-jgi-02.old:/var/log/couchdb/old
       - lb.dev-couchdb-pi-jgi-02.rot:/usr/share/logrotate
     labels:
       # prevent running stale (cached) image on restart or upgrade
